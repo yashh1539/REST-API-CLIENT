@@ -1,0 +1,22 @@
+package http;
+
+import org.json.JSONObject;
+
+public class JsonParserUtil {
+    public static WeatherData parseWeatherData(String json) {
+        WeatherData data = new WeatherData();
+
+        try {
+            JSONObject obj = new JSONObject(json);
+            JSONObject current = obj.getJSONObject("current_weather");
+
+            data.setTemperature(current.getDouble("temperature"));
+            data.setWindspeed(current.getDouble("windspeed"));
+        } catch (Exception e) {
+            System.err.println("Error parsing JSON: " + e.getMessage());
+        }
+
+        return data;
+    }
+}
+
