@@ -1,0 +1,17 @@
+
+public class Main {
+    public static void main(String[] args) {
+        String apiUrl = "https://api.open-meteo.com/v1/forecast?latitude=19.0760&longitude=72.8777&current_weather=true\n";
+
+        // Step 1: Make HTTP GET Request
+        String jsonResponse = ApiService.get(apiUrl);
+
+        // Step 2: Parse JSON Response into Object
+        WeatherData weather = JsonParserUtil.parseWeatherData(jsonResponse);
+
+        // Step 3: Display structured data
+        System.out.println("\n--- Current Weather in Mumbai ---");
+        System.out.println("Temperature: " + weather.getTemperature() + " °C");
+        System.out.println("Windspeed: " + weather.getWindspeed() + " km/h");
+    }
+}
